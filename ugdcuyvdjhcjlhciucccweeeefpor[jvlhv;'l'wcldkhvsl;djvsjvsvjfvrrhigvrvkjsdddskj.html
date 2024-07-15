@@ -406,9 +406,7 @@
   <span></span>
   <span></span>
 </div>  
-    <style>
-
-    </style>
+    
     <navv></navv>
     <divi><input type="text" id="hostnameInput" placeholder="Enter hostname or IP" value="localhost"><br><br><br>
       <h7>Aimbot : </h7><br><br>
@@ -433,68 +431,59 @@
 <button id="magice">MAGIC BULLET ON</button>
 
 <button id="magicd">MAGIC BULLET OFF</button><br><br>
-<h7>REFRESH : </h7><br><br>
-<button onClick="history.go(0);">REFRESH</button><br><br><br>
+
 
 </divisa>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const handleButtonClick = (endpoint) => {
-      const hostname = document.getElementById('hostnameInput').value.trim();
-      const url = `http://${hostname}:8080/${endpoint}`;
+   document.addEventListener('DOMContentLoaded', () => {
+      const handleButtonClick = (endpoint) => {
+        const hostname = document.getElementById('hostnameInput').value.trim();
+        const url = `http://${hostname}:8080/${endpoint}`;
 
-      fetch(url, {
-          method: 'post',
-          // Add any necessary headers or data
-        })
-        .then(response => {
-          if (response.ok) {
-            console.log(`C# service triggered successfully for ${endpoint}!`);
-          } else {
-            console.error(`Error triggering C# service for ${endpoint}:`, response.statusText);
+        // Open a new window with the constructed URL
+        const openedWindow = window.open(url, '_blank');
+
+        // Close the window after 5 seconds
+        setTimeout(function() {
+          if (openedWindow && !openedWindow.closed) {
+            openedWindow.close();
           }
-        })
-        .catch(error => {
-          console.error('Network error:', error);
-        });
-    };
+        }, 25); // 5000 milliseconds = 5 seconds
+      };
 
-    document.getElementById('aimbote').addEventListener('click', () => {
-      handleButtonClick('aimbote');
-    });
+      document.getElementById('aimbote').addEventListener('click', () => {
+        handleButtonClick('aimbote');
+      });
 
-    document.getElementById('aimbotd').addEventListener('click', () => {
-      handleButtonClick('aimbotd');
-    });
+      document.getElementById('aimbotd').addEventListener('click', () => {
+        handleButtonClick('aimbotd');
+      });
 
-    document.getElementById('esp').addEventListener('click', () => {
-      handleButtonClick('esp');
-    });
+      document.getElementById('esp').addEventListener('click', () => {
+        handleButtonClick('esp');
+      });
 
-    document.getElementById('awme').addEventListener('click', () => {
-      handleButtonClick('awme');
-    });
+      document.getElementById('awme').addEventListener('click', () => {
+        handleButtonClick('awme');
+      });
 
-    document.getElementById('awmd').addEventListener('click', () => {
-      handleButtonClick('awmd');
-    });
+      document.getElementById('awmd').addEventListener('click', () => {
+        handleButtonClick('awmd');
+      });
 
-    document.getElementById('speed').addEventListener('click', () => {
-      handleButtonClick('speed');
-    });
+      document.getElementById('speed').addEventListener('click', () => {
+        handleButtonClick('speed');
+      });
 
-    document.getElementById('magice').addEventListener('click', () => {
-      handleButtonClick('magice');
-    });
+      document.getElementById('magice').addEventListener('click', () => {
+        handleButtonClick('magice');
+      });
 
-    document.getElementById('magicd').addEventListener('click', () => {
-      handleButtonClick('magicd');
-    });
+      document.getElementById('magicd').addEventListener('click', () => {
+        handleButtonClick('magicd');
+      });
 
-    document.getElementById('refresh').addEventListener('click', () => {
-      location.reload(); // This will refresh the page
     });
-  });
 </script>
 </body>
 
