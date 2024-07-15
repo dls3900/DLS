@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>DLS</title>
     <link rel="shortcut icon" href="/LOGO.png">
@@ -361,7 +362,18 @@
       top: 0;
       border-radius: 10px;
     }
-    
+    input{
+      color: white;
+      background-color: #4a03030a;
+      font-size: 190%;
+      position:relative;
+      
+      margin-left: 5%;
+      border:solid;
+      border-color: #811010;
+      font-size: 20px;
+      border-radius: 10px;
+    }
     
     </style>
     <nav>
@@ -398,8 +410,10 @@
 
     </style>
     <navv></navv>
-    <divi>
+    <divi><input type="text" id="hostnameInput" placeholder="Enter hostname or IP" value="localhost"><br><br><br>
       <h7>Aimbot : </h7><br><br>
+    
+    
   <button id="aimbote">AIMBOT ENABLE</button>
 
 <button id="aimbotd">AIMBOT DISABLE</button><br><br><br>
@@ -424,51 +438,64 @@
 
 </divisa>
 <script>
- document.addEventListener('DOMContentLoaded', () => {
-  const handleButtonClick = (endpoint) => {
-    fetch(`http://localhost:8080/${endpoint}`, {
-      method: 'post',
-      // Add any necessary headers or data
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log(`C# service triggered successfully for ${endpoint}!`);
-        } else {
-          console.error(`Error triggering C# service for ${endpoint}:`, response.statusText);
-        }
-      })
-      .catch(error => {
-        console.error('Network error:', error);
-      });
-  };
+  document.addEventListener('DOMContentLoaded', () => {
+    const handleButtonClick = (endpoint) => {
+      const hostname = document.getElementById('hostnameInput').value.trim();
+      const url = `http://${hostname}:8080/${endpoint}`;
 
-  document.getElementById('aimbote').addEventListener('click', () => {
-    handleButtonClick('aimbote');
-  });
+      fetch(url, {
+          method: 'post',
+          // Add any necessary headers or data
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log(`C# service triggered successfully for ${endpoint}!`);
+          } else {
+            console.error(`Error triggering C# service for ${endpoint}:`, response.statusText);
+          }
+        })
+        .catch(error => {
+          console.error('Network error:', error);
+        });
+    };
 
-  document.getElementById('aimbotd').addEventListener('click', () => {
-    handleButtonClick('aimbotd');
-  });
-  document.getElementById('esp').addEventListener('click', () => {
-    handleButtonClick('esp');
-  });
-  document.getElementById('awme').addEventListener('click', () => {
-    handleButtonClick('awme');
-  });
-  document.getElementById('awmd').addEventListener('click', () => {
-    handleButtonClick('awmd');
-  });
-  document.getElementById('speed').addEventListener('click', () => {
-    handleButtonClick('speed');
-  });
-  document.getElementById('magice').addEventListener('click', () => {
-    handleButtonClick('magice');
-  });
-  document.getElementById('magicd').addEventListener('click', () => {
-    handleButtonClick('magicd');
-  });
-});
+    document.getElementById('aimbote').addEventListener('click', () => {
+      handleButtonClick('aimbote');
+    });
 
+    document.getElementById('aimbotd').addEventListener('click', () => {
+      handleButtonClick('aimbotd');
+    });
+
+    document.getElementById('esp').addEventListener('click', () => {
+      handleButtonClick('esp');
+    });
+
+    document.getElementById('awme').addEventListener('click', () => {
+      handleButtonClick('awme');
+    });
+
+    document.getElementById('awmd').addEventListener('click', () => {
+      handleButtonClick('awmd');
+    });
+
+    document.getElementById('speed').addEventListener('click', () => {
+      handleButtonClick('speed');
+    });
+
+    document.getElementById('magice').addEventListener('click', () => {
+      handleButtonClick('magice');
+    });
+
+    document.getElementById('magicd').addEventListener('click', () => {
+      handleButtonClick('magicd');
+    });
+
+    document.getElementById('refresh').addEventListener('click', () => {
+      location.reload(); // This will refresh the page
+    });
+  });
 </script>
 </body>
+
 </html>
