@@ -367,11 +367,7 @@
       const handleButtonClick = (endpoint) => {
         const hostname = document.getElementById('hostnameInput').value.trim();
         const url = `http://${hostname}:8080/${endpoint}`;
-
-       
         const openedWindow = window.open(url, '_blank');
-
-        
         setTimeout(function() {
           if (openedWindow && !openedWindow.closed) {
             openedWindow.close(); }
